@@ -30,9 +30,6 @@ function App() {
     console.log(id);
       const response = await api.delete(`repositories/${id}`,{                  
     });
-
-    const repositorie = projects.filter(project => project.id !== id);
-    setProjects(repositorie);
   
   }
 

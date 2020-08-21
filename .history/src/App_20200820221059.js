@@ -28,11 +28,8 @@ function App() {
 
   async function handleRemoveRepository(id) {
     console.log(id);
-      const response = await api.delete(`repositories/${id}`,{                  
+      const response = await api.delete(`products/${id}`,{                  
     });
-
-    const repositorie = projects.filter(project => project.id !== id);
-    setProjects(repositorie);
   
   }
 

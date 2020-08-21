@@ -16,7 +16,7 @@ function App() {
 
 
   async function handleAddRepository() {
-   
+    
      const response = await api.post('/repositories',{
         "title": 'Desafio ReactJS',
       });
@@ -25,15 +25,16 @@ function App() {
    setProjects([...projects,project]);
 
   }
-
-  async function handleRemoveRepository(id) {
-    console.log(id);
-      const response = await api.delete(`repositories/${id}`,{                  
-    });
-
-    const repositorie = projects.filter(project => project.id !== id);
-    setProjects(repositorie);
   
+  async function handleRemoveRepository(id) {
+    const id = 'fd9859d6-218a-4026-ac9b-80b3130a0666';
+  
+      const response = await api.delete(`products/${id}`,{                  
+    });
+    const project = response.data;
+    console.log(response.data);
+
+    setProjects([...projects,project]);
   }
 
   return (
@@ -41,7 +42,7 @@ function App() {
       <ul data-testid="repository-list">
       {projects.map(project =>(
           <li key={project.id}>{project.title}
-          <button onClick={() => handleRemoveRepository(project.id)}>
+          <button onClick={() => handleRemoveRepository(1)}>
             Remover
           </button>
            </li>

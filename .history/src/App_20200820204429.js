@@ -8,6 +8,7 @@ function App() {
   const [projects,setProjects] = useState([]);
   useEffect(() =>{
     api.get('./repositories').then(response =>{
+      console.log(response.data);
       setProjects(response.data);
     });
 
@@ -16,10 +17,14 @@ function App() {
 
 
   async function handleAddRepository() {
-   
-     const response = await api.post('/repositories',{
-        "title": 'Desafio ReactJS',
-      });
+    
+     const response = await api.post('/projects',{
+        "title": `Desafio ReactJS ${Date.now()}`,
+        "url":"https://github.com/rocketseat-education/bootcamp-gostack-desafios/tree/master/desafio-conceitos-reactjs",
+        "techs":["Node.js","ReacJS","React Native"],
+        "likes": 0
+   });
+
    const project = response.data;
 
    setProjects([...projects,project]);
@@ -27,27 +32,24 @@ function App() {
   }
 
   async function handleRemoveRepository(id) {
-    console.log(id);
-      const response = await api.delete(`repositories/${id}`,{                  
-    });
-
-    const repositorie = projects.filter(project => project.id !== id);
-    setProjects(repositorie);
-  
+    // TODO
   }
 
   return (
     <div>
       <ul data-testid="repository-list">
-      {projects.map(project =>(
-          <li key={project.id}>{project.title}
-          <button onClick={() => handleRemoveRepository(project.id)}>
+        <li>
+          <ul>
+          {projects.map(project =>(
+                  <li key={project.id}>{project.title}</li>
+              ))}  
+            </ul>
+          <button onClick={() => handleRemoveRepository(1)}>
             Remover
           </button>
-           </li>
-        ))}
+        </li>
       </ul>
-      
+
       <button onClick={handleAddRepository}>Adicionar</button>
     </div>
   );
