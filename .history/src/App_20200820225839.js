@@ -31,7 +31,7 @@ function App() {
     
 
     const result = repositories.filter(repositorie => repositorie.id !== id);
-    setRepositories(result);
+    setProjects(result);
   
   }
 
@@ -40,7 +40,7 @@ function App() {
       <ul data-testid="repository-list">
       {repositories.map(repositorie =>(
           <li key={repositorie.id}>{repositorie.title}
-          <button onClick={() => handleRemoveRepository(repositorie.id)}>
+          <button onClick={() => handleRemoveRepository(project.id)}>
             Remover
           </button>
            </li>
